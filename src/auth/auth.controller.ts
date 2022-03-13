@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Body, Post } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
 
@@ -6,7 +6,10 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  login(): string {
-    return 'access token';
+  /* ............. User Login API .................... */
+  @Post('login')
+  login(@Body() body: any): { jwtToken: string } {
+    const { email, password } = body;
+    return this.authService.login({ email, password });
   }
 }

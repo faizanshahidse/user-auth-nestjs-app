@@ -1,10 +1,8 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { Body } from '@nestjs/common';
 
 import { User } from '../models/user.model';
 import { AuthService } from './auth.service';
-import { CreateUserInput } from '../dto/create-user-dto';
-import { UserDto } from '../dto/user-dto';
+import { CreateUserInput } from '../dto/create-user-input-dto';
 
 @Resolver(() => User)
 export class AuthResolver {
@@ -25,9 +23,15 @@ export class AuthResolver {
 
   /* ............. User Login .................... */
   // @UseGuards(LocalAuthGuard)
-  @Query(() => String)
-  login(@Body() userDto: UserDto): { jwtToken: string } {
-    console.log(userDto);
-    return this.authService.login(userDto);
-  }
+  // @Query(() => String)
+  // login(
+  //   @Req() req: Request,
+  //   @Args('loginUserDto') loginUserDto: LoginUserInput,
+  // ): {
+  //   jwtToken: string;
+  // } {
+  //   console.log('req.body...........', req.body);
+  //   // return { jwtToken: 'token' };
+  //   return this.authService.login(loginUserDto);
+  // }
 }
