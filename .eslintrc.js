@@ -26,5 +26,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'class-methods-use-this': 'off',
     'react/jsx-filename-extension': 'off',
+    '@typescript-eslint/quotes': 'off',
+    '@typescript-eslint/indent': 'off',
   },
 };
