@@ -3,20 +3,23 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { User } from '../models/user.model';
+import { IUser } from '../interfaces/user.interface';
 import { UpdateUserInput } from '../dto/update-user.input-dto';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly UserModel: Model<User>) {}
+  constructor(@InjectModel('User') private readonly UserModel: Model<any>) {}
 
   async add(user: User): Promise<User> {
     const newUser = new this.UserModel(user);
+
     const response = await newUser.save();
     return response;
   }
 
   public async getUserByEmail({ email }): Promise<User> {
     const user = await this.UserModel.findOne({ email });
+
     return user;
   }
 

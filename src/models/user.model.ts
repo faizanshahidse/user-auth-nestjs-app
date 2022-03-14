@@ -9,7 +9,7 @@ export class User {
   name?: string;
 
   @Field()
-  email: string;
+  email?: string;
 
   @Field()
   password: string;
